@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  strapi:
+    build:
+      context: ./app
+    container_name: strapi_app
+    ports:
+      - "${STRAPI_PORT}:1337"
+    env_file:
+      - .env.local
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    networks:
+      - woridge-global-network
+
+  db:
+    image: postgres:15
+    container_name: strapi_db
+    restart: always
+    env_file:
+      - .env.local
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - strapi_data:/var/lib/postgresql/data
+    networks:
+      - woridge-global-network
+
+volumes:
+  strapi_data:
+
+networks:
+  woridge-global-network:
+    external: true

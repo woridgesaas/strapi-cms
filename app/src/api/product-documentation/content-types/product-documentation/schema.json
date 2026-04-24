@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_documentations",
+  "info": {
+    "singularName": "product-documentation",
+    "pluralName": "product-documentations",
+    "displayName": "ProductDocumentation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "productId": {
+      "type": "biginteger",
+      "required": true
+    },
+    "summary": {
+      "type": "text"
+    },
+    "content": {
+      "type": "blocks",
+      "required": true
+    },
+    "technicalSpecs": {
+      "type": "blocks"
+    },
+    "usageRecommendations": {
+      "type": "blocks"
+    },
+    "warrantyInfo": {
+      "type": "string"
+    },
+    "isPublishedToPublic": {
+      "type": "boolean",
+      "default": true
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
