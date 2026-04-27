@@ -459,7 +459,6 @@ export interface ApiProductDocumentationProductDocumentation
       Schema.Attribute.Private;
     productId: Schema.Attribute.BigInteger & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
     summary: Schema.Attribute.Text;
     technicalSpecs: Schema.Attribute.Blocks;
     title: Schema.Attribute.String & Schema.Attribute.Required;
@@ -468,6 +467,43 @@ export interface ApiProductDocumentationProductDocumentation
       Schema.Attribute.Private;
     usageRecommendations: Schema.Attribute.Blocks;
     warrantyInfo: Schema.Attribute.String;
+  };
+}
+
+export interface ApiSubscriptionDocumentationSubscriptionDocumentation
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'subscription_documentations';
+  info: {
+    displayName: 'SubscriptionDocumentation';
+    pluralName: 'subscription-documentations';
+    singularName: 'subscription-documentation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    advantages: Schema.Attribute.Blocks;
+    content: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    durationOptions: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'1 mois / 3 mois / 6 mois / 1 an'>;
+    features: Schema.Attribute.Blocks;
+    isPublishedToPublic: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subscription-documentation.subscription-documentation'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subscriptionType: Schema.Attribute.Enumeration<['BASIC', 'PRO', 'PREMIUM']>;
+    summary: Schema.Attribute.String;
+    target: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -983,6 +1019,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::product-documentation.product-documentation': ApiProductDocumentationProductDocumentation;
+      'api::subscription-documentation.subscription-documentation': ApiSubscriptionDocumentationSubscriptionDocumentation;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

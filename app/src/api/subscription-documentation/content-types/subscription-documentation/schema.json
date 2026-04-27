@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscription_documentations",
+  "info": {
+    "singularName": "subscription-documentation",
+    "pluralName": "subscription-documentations",
+    "displayName": "SubscriptionDocumentation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subscriptionType": {
+      "type": "enumeration",
+      "enum": [
+        "BASIC",
+        "PRO",
+        "PREMIUM"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "content": {
+      "type": "blocks"
+    },
+    "features": {
+      "type": "blocks"
+    },
+    "advantages": {
+      "type": "blocks"
+    },
+    "target": {
+      "type": "string"
+    },
+    "durationOptions": {
+      "type": "string",
+      "default": "1 mois / 3 mois / 6 mois / 1 an"
+    },
+    "isPublishedToPublic": {
+      "type": "boolean"
+    }
+  }
+}

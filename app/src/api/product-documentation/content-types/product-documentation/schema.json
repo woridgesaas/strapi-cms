@@ -11,14 +11,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
-    },
     "productId": {
       "type": "biginteger",
       "required": true
@@ -52,6 +44,10 @@
         "videos",
         "audios"
       ]
+    },
+    "title": {
+      "type": "string",
+      "required": true
     }
   }
 }
